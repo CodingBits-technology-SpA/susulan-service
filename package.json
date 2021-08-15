@@ -1,0 +1,33 @@
+{
+  "name": "susulan-service",
+  "version": "1.0.0",
+  "description": "Servicio para gestionar el historial de un tratamiento del paciente",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodingBits-technology-SpA/susulan-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodingBits-technology-SpA/susulan-service/issues"
+  },
+  "homepage": "https://github.com/CodingBits-technology-SpA/susulan-service#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.5",
+    "swagger-jsdoc": "^5.0.1",
+    "swagger-ui-express": "^4.0.7",
+    "uuid": "^3.3.2"
+  }
+}

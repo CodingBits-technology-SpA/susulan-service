@@ -15,4 +15,7 @@ exports.registrarse = (req,res) => {
         }
 
     });
+  
+    res.status(200).json( formatResStandar(0,"Usuario creado con exito",[user.toJSON()]) )
+
 };

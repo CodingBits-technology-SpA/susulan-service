@@ -43,9 +43,10 @@ userShema
     }).get(function(){
         return this._password;
     });
-userShema.method = {
+
+userShema.methods = {
     authenticate: function (plainText){
-        return this.encryptPassword(plainText) == this.hashed_paswword;
+        return this.encryptPassword(plainText) === this.hashed_paswword;
     },
     encryptPassword: function(password){
         if (!password) return "";
@@ -60,7 +61,7 @@ userShema.method = {
             return error;
         }
     },
-    toJson: function(){
+    toJsonResponse: function(){
         let user = this;
         let userObject = user.toObject();
 

@@ -13,7 +13,7 @@ exports.registrarse = (req,res) => {
             return res.status(500).json(payloadError);
         }
         return res.status(200).json( 
-            formatResStandar(0,"Usuario creado con exito",[user.toJSON()]) 
+            formatResStandar(0,"Usuario creado con exito",[user.toJsonResponse()]) 
         );
     });
   

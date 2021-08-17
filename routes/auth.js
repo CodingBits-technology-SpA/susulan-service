@@ -1,8 +1,8 @@
-const express = requiere("express");
-const router = express.router();
+const express = require("express");
+const router = express.Router();
 
 const { registrarse, login, cerrarSesion} = require("../controllers/auth");
-const { validaRegistro,validaLogin,isJsonValidRequest } = require("../validators/index");
+const { validaRegistro,validaLogin } = require("../validators");
 
 // rutas
 

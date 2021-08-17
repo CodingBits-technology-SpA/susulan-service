@@ -3,19 +3,17 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const expressValidator = require("express-validator");
+const expressValidators = require("express-validator");
 require("dotenv").config();
-const {isJsonValidRequest} = require("./validator/index");
+const {isJsonValidRequest} = require("./validators/index");
 
 const port = process.env.PORT || 3000;
-const app = express();
+
 
 const authRoutes = require("./routes/auth");
-app.use(bodyParser.json());
-app.use(isJsonValidRequest);
-app.use(cookieParser());
-app.use(expressValidator());
-app.use(cors());
+
+
+const app = express();
 
 
 const db = async () => {
@@ -23,7 +21,8 @@ const db = async () => {
         const suceess = await mongoose.connect(process.env.DATABASE,{
             useNewUrlParser:true,
             useUnifiedTopology:true,
-            useFindAndModify:false
+            useFindAndModify:false,
+            useCreateIndex:true
         });
 
         console.log("DB conectada");
@@ -34,6 +33,14 @@ const db = async () => {
 }
 
 db();
+
+//middlewares
+app.use(bodyParser.json());
+app.use(isJsonValidRequest);
+app.use(cookieParser());
+app.use(expressValidators());
+app.use(cors());
+
 
 app.use("/api",authRoutes);
 

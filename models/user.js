@@ -25,7 +25,12 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:''
     },
-    role: [ {type:ObjectId,ref:'Profile'} ]
+    role: [
+         {
+             type:ObjectId,
+             ref:"Profile"
+        } 
+    ]
 },
     {
         timestamps:true

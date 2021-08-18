@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const uuidv1 = require("uuid/v1");
+const { ObjectId } = mongoose.Schema;
 
-const userShema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name:{
         type:String,
         trim:true,
@@ -24,17 +25,14 @@ const userShema = new mongoose.Schema({
         type:String,
         default:''
     },
-    role:{
-        type:Number,
-        default:0
-    }
+    role: [ {type:ObjectId,ref:'Profile'} ]
 },
     {
         timestamps:true
 
 });
 
-userShema
+userSchema
     .virtual("password")
     .set(function (password){
         this._password = password;
@@ -44,7 +42,7 @@ userShema
         return this._password;
     });
 
-userShema.methods = {
+userSchema.methods = {
     authenticate: function (plainText){
         return this.encryptPassword(plainText) === this.hashed_paswword;
     },
@@ -71,5 +69,5 @@ userShema.methods = {
         return userObject;
     }
 }
-module.exports = mongoose.model("User",userShema);
+module.exports = mongoose.model("User",userSchema);
 

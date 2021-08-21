@@ -14,8 +14,9 @@ exports.profilePorId = (req,res) => {
     });
 }
 exports.profileLeerTodo = (req,res) => {
+
     Perfil.find().exec( (err,perfilDB) =>{
-        if(err){
+        if(err || !perfilDB){
             const msgError = formatResStandar(-10,'Ocurrio un error al intentar obtener registros',[err]);
             return res.status(503).json(msgError);
         }

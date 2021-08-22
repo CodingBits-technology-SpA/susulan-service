@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 
 const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
 
 
 const app = express();
@@ -43,6 +44,7 @@ app.use(cors());
 
 
 app.use("/api",authRoutes);
+app.use("/api",profileRoutes);
 
 
 app.listen(port,() => {

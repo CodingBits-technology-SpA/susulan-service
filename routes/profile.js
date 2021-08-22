@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { userPropertyToken,isToken,requireSignin,isAuth,isAdmin} = require("../controllers/auth");
+const { userPropertyToken,isToken,requireSignin,isAuth} = require("../controllers/auth");
 const { profilePorId,profileCrear,profileLeer,profileLeerTodo,profileActualizar,profileEliminar } = require("../controllers/profile");
 const { validaProfile } = require("../validators/profile");
 
@@ -15,3 +15,5 @@ router.get("/profile/",userPropertyToken,isToken,requireSignin,isAuth,profileLee
 
 // params
 router.param("profileId", profilePorId);
+
+module.exports = router;

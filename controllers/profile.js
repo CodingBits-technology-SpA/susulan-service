@@ -51,7 +51,7 @@ exports.profileEliminar = (req,res) => {
     const profile = req.profile;
     profile.remove( (err,profileDB)=> {
         if(err || !profileDB){
-            const msgErrorRemove = formatResStandar(-10,'Error al eliminar el perfil.',[]);
+            const msgErrorRemove = formatResStandar(-10,'Error al eliminar el perfil.',[err]);
             return res.status(503).json(msgErrorRemove);
         }
         const msgProfileSuccess = formatResStandar(0,'Eliminado correctamente.',[profileDB]);

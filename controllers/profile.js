@@ -1,9 +1,9 @@
 const Perfil = require("../models/profile")
 const { formatResStandar } = require("../helpers/formatRes");
 
-exports.profilePorId = (req,res,next) => {
+exports.profilePorId = (req,res,next,id) => {
     
-    Perfil.findById(req.body.id).exec( (err,perfilDB) => {
+    Perfil.findById(id).exec( (err,perfilDB) => {
         if(err || !perfilDB){
             const msgPefilNoExists = formatResStandar(-10,'No se encontro el perfil.',[err]);
             return res.status(404).json(msgPefilNoExists);

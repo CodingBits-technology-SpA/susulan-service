@@ -12,7 +12,7 @@ exports.profilePorId = (req,res,next,id) => {
         next();
     });
 }
-exports.profileCrear = (req,res,next) => {
+exports.profileCrear = (req,res) => {
 
     const perfil = new Perfil(req.body);
 
@@ -21,7 +21,7 @@ exports.profileCrear = (req,res,next) => {
             const msgPefilNoExists = formatResStandar(-10,'No se puede crear el Perfil.',[err]);
             return res.status(404).json(msgPefilNoExists);
         }
-        const msgSuccess = formatResStandar(0,'Perfil creado con éxito.');
+        const msgSuccess = formatResStandar(0,'Perfil creado con éxito.',[perfilDB]);
         return res.status(200).json(msgSuccess);
     });
     
@@ -40,7 +40,7 @@ exports.profileLeerTodo = (req,res) => {
         }
         const msgSuccess = formatResStandar(0,'Lista de perfiles',[perfilDB]);
 
-        return res.json(200).json(msgSuccess);
+        return res.status(200).json(msgSuccess);
     })
 
 }

@@ -85,6 +85,7 @@ exports.isToken = (err,req,res,next) => {
 
     next();
 }
+
 exports.isAdmin = (req,res,next) => {
     if(req.profile.role === 0){
         const msgAccesDenegation = formatResStandar(-10,'Acceso denegado,sólo el admin tiene acceso a este recurso.',[]);

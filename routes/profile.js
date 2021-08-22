@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const { userPropertyToken,isToken,requireSignin,isAuth} = require("../controllers/auth");
+const { isToken,requireSignin} = require("../controllers/auth");
 const { profilePorId,profileCrear,profileLeer,profileLeerTodo,profileActualizar,profileEliminar } = require("../controllers/profile");
 const { validaProfile } = require("../validators/profile");
 
 // rutas
 
-router.post("/profile",userPropertyToken,isToken,requireSignin,isAuth,validaProfile,profileCrear);
-router.put("/profile/:profileId",userPropertyToken,isToken,requireSignin,isAuth,validaProfile,profileActualizar);
-router.delete("/profile/:profileId",userPropertyToken,isToken,requireSignin,isAuth,profileEliminar);
-router.get("/profile/:profileId",userPropertyToken,isToken,requireSignin,isAuth,validaProfile,profileLeer);
-router.get("/profile/",userPropertyToken,isToken,requireSignin,isAuth,profileLeerTodo);
+router.post("/profile",requireSignin,isToken,validaProfile,profileCrear);
+router.put("/profile/:profileId",requireSignin,isToken,validaProfile,profileActualizar);
+router.delete("/profile/:profileId",requireSignin,isToken,profileEliminar);
+router.get("/profile/:profileId",requireSignin,isToken,profileLeer);
+router.get("/profile/",requireSignin,isToken,profileLeerTodo);
 
 // params
 router.param("profileId", profilePorId);

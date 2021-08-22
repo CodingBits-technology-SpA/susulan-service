@@ -14,6 +14,20 @@ exports.usuarioPorId = (req, res, next, id) => {
         next();
     });
 };
+exports.update = (req, res) => {
+    const user = req.user;
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.avatar = req.body.avatar;
+    user.save((err, data) => {
+        if (err || !data) {
+            const msgError = formatResStandar(0,'Error al actualizar el usuario',[err]);
+            return res.status(503).json(msgError);
+        }
+        const msgSuccess = formatResStandar(0,'Usuario actualizado',[user.toJsonResponse()]);
+        return res.status(200).json(msgSuccess);
+    });
+};
 exports.leerUsuario = (req, res) => {
     const msgSuccess = formatResStandar(0,'Usuario encontrado',[req.user.toJsonResponse()]);
     return res.status(200).json(msgSuccess);

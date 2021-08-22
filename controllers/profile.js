@@ -12,6 +12,21 @@ exports.profilePorId = (req,res,next) => {
         next();
     });
 }
+exports.profileCrear = (req,res,next) => {
+
+    const perfil = new Perfil(req.body);
+
+    perfil.save( (err,perfilDB) =>{
+        if(err || !perfilDB){
+            const msgPefilNoExists = formatResStandar(-10,'No se puede crear el Perfil.',[err]);
+            return res.status(404).json(msgPefilNoExists);
+        }
+        const msgSuccess = formatResStandar(0,'Perfil creado con éxito.');
+        return res.status(200).json(msgSuccess);
+    });
+    
+   
+}
 exports.profileLeer = (req, res) => {
     const profileResponse = formatResStandar(0,'Perfil encontrando.',[req.profile]);
     return res.status(200).json(profileResponse);
